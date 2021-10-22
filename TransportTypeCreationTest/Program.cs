@@ -57,7 +57,7 @@ namespace TransportTypeCreationTest
             Car carOneUpdated = new("Car", "Fiat", "Blue");
             carOneUpdated.CarId = carOne.CarId;
 
-            Boat boatOneUpdated = new Boat("Boat", "Unknown", "Orange");
+            Boat boatOneUpdated = new("Boat", "Unknown", "Orange");
             boatOneUpdated.BoatId = boatOne.BoatId;
 
             WriteLine("\n\tTesting Update & Delete:");
