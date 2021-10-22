@@ -36,7 +36,7 @@ namespace TransportTypeCreationTest
             oneUpdated.CarId = one.CarId;
 
             WriteLine("\n\tTesting Update&Delete:");
-
+            service.Update(oneUpdated);
             service.Delete(three.CarId);
 
             foreach (Car c in toPrint)
