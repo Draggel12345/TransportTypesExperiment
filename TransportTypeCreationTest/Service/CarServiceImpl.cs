@@ -32,9 +32,9 @@ namespace TransportTypeCreationTest.Service
             return temp;
         }
 
-        public Car Create(string model, string color)
+        public Car Create(string type, string model, string color)
         {
-            Car tmp = new(model, color);
+            Car tmp = new(type, model, color);
             return carDao.Save(tmp);
         }
 

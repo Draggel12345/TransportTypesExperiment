@@ -10,7 +10,7 @@ namespace TransportTypeCreationTest.Service
     {
         T FindById(int id);
         List<T> FindAll();
-        T Create(string model, string color);
+        T Create(string type, string model, string color);
         T Update(T o);
         void Delete(int id);
     }
