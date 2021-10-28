@@ -8,7 +8,7 @@ using TransportTypeCreationTest.Entitys;
 
 namespace TransportTypeCreationTest.Service
 {
-    class CarServiceImpl : ITransportService<Car>
+    class CarServiceImpl : EntityFactory, ITransportService<Car>
     {
         private readonly ITransport<Car> carDao = new CarImpl();
 
@@ -32,20 +32,21 @@ namespace TransportTypeCreationTest.Service
             return temp;
         }
 
-        public Car Create(string type, string model, string color)
+        public Car Create(Car car)
         {
-            Car tmp = new(type, model, color);
-            return carDao.Save(tmp);
+            Car temp = CreateCar(car.CarId, car.CarType, car.CarModel, car.CarColor);
+            return carDao.Save(temp);
         }
 
-        public Car Update(Car o)
+        public Car Update(Car car)
         {
-            Car toUpdate = carDao.FindById(o.CarId);
-            toUpdate.CarModel = o.CarModel;
-            toUpdate.CarColor = o.CarColor;
+            Car toUpdate = carDao.FindById(car.CarId);
+
+            toUpdate.CarModel = car.CarModel;
+            toUpdate.CarColor = car.CarColor;
 
             carDao.Save(toUpdate);
-            return o;
+            return car;
         }
 
         public void Delete(int id)

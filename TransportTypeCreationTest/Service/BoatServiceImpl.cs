@@ -8,12 +8,13 @@ using TransportTypeCreationTest.Entitys;
 
 namespace TransportTypeCreationTest.Service
 {
-    class BoatServiceImpl : ITransportService<Boat>
+    class BoatServiceImpl : EntityFactory, ITransportService<Boat>
     {
         private readonly ITransport<Boat> boatDao = new BoatImpl();
-        public Boat Create(string type, string model, string color)
+
+        public Boat Create(Boat boat)
         {
-            Boat temp = new(type, model, color);
+            Boat temp = CreateBoat(boat.BoatId, boat.BoatType, boat.BoatModel, boat.BoatColor);
             return boatDao.Save(temp);
         }
 
@@ -43,14 +44,14 @@ namespace TransportTypeCreationTest.Service
             return toFind;
         }
 
-        public Boat Update(Boat o)
+        public Boat Update(Boat boat)
         {
-            Boat toUpdate = boatDao.FindById(o.BoatId);
-            toUpdate.BoatModel = o.BoatModel;
-            toUpdate.BoatColor = o.BoatColor;
+            Boat toUpdate = boatDao.FindById(boat.BoatId);
+            toUpdate.BoatModel = boat.BoatModel;
+            toUpdate.BoatColor = boat.BoatColor;
 
             boatDao.Save(toUpdate);
-            return o;
+            return boat;
         }
     }
 }

@@ -13,12 +13,13 @@ namespace TransportTypeCreationTest.Entitys
         private string _carType;
         private string _carModel;
         private string _carColor;
-        public int CarId { get { return _carId; } set { _carId = value; } }
+        public int CarId { get { return _carId; } private set { _carId = value; } }
         public string CarType { get { return _carType; } set { _carType = value; } }
         public string CarModel { get { return _carModel; } set { _carModel = value; } }
         public string CarColor { get { return _carColor; } set { _carColor = value; } }
 
         public Car(string type, string model, string color) => (CarId, CarType, CarModel, CarColor) = (++idCounter, type, model, color);
+        public Car(int id, string type, string model, string color) => (CarId, CarType, CarModel, CarColor) = (id, type, model, color);
 
         public override string ToString()
         {
